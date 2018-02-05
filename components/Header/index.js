@@ -12,7 +12,7 @@ const classUnion = className => {
   if (type === 'object')
     return Object.keys(className)
       .map(p => !!className[p] && p)
-      .filter(v => !!v)
+      .filter(Boolean)
       .join(' ');
   return '';
 };
