@@ -13,6 +13,10 @@ app.prepare().then(() => {
 
   dev && test(server) // For testing
 
+  server.get('/list/:id', (req, res) => {
+    return app.render(req, res, '/list', { id: req.params.id })
+  })
+
   // Examples
 
   server.get('/a', (req, res) => {

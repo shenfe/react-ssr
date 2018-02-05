@@ -11,12 +11,28 @@ import withRedux from 'next-redux-wrapper'
 import List from '../components/List'
 import Detail from '../components/Detail'
 
-const ListPage = ({ id, filterText }) =>
+import 'isomorphic-unfetch'
+
+const ListPage = ({ id, title, content, status, filterText }) =>
   <Layout>
-    {id == null ? <List filterText={filterText} /> : <Detail id={id}/>}
+    {id == null ? <List filterText={filterText} /> : <Detail id={id} title={title} content={content} status={status}/>}
   </Layout>
 
-ListPage.getInitialProps = ({ query: { id } }) => ({ id })
+const apiPath = 'http://localhost:3000'
+
+ListPage.getInitialProps = async ({ query: { id } }) => {
+  const res = await fetch(`${apiPath}/api/getDetail?id=${id}`)
+    .then(res => res.json())
+    .then(res => {
+      return {
+        status: 1,
+        id,
+        title: res.data.title,
+        content: res.data.content
+      }
+    })
+  return res
+}
 
 function select(state) {
   return {
