@@ -21,7 +21,7 @@ function Header({ links, router }) {
   const navs = links;
   const list = navs.map(item =>
     <li key={item.alias} className={classUnion([{ active: router.pathname === item.alias }, 'cell'])}>
-      <Link href={item.alias}>{item.text}</Link>
+      <Link href={item.alias}><a>{item.text}</a></Link>
     </li>
   );
   return (

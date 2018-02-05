@@ -13,20 +13,22 @@ class Detail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let id = this.props.match.params.id;
-    fetch(`/api/getDetail?id=${id}`)
+  static async getInitialProps () {
+    const id = this.props.id;
+    const res = await fetch(`/api/getDetail?id=${id}`)
+      .then(res => res.json())
       .then(res => {
         this.setState({
           status: 1,
           id: id,
-          title: res.data.data.title,
-          content: res.data.data.content
-        });
+          title: res.data.title,
+          content: res.data.content
+        })
       })
       .catch(err => {
-        console.error(err);
-      });
+        console.error(err)
+      })
+    return res
   }
 
   render() {

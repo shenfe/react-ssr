@@ -34,8 +34,7 @@ class List extends React.Component {
     super(props);
     this.state = {
       list: [],
-      status: 0,
-      // filterText: ''
+      status: 0
     };
 
     this.updateFilterText = this.updateFilterText.bind(this);
@@ -43,10 +42,11 @@ class List extends React.Component {
 
   componentDidMount() {
     fetch('/api/getList')
+      .then(res => res.json())
       .then(res => {
         this.setState({
           status: 1,
-          list: res.data.data
+          list: res.data
         });
       })
       .catch(err => {
@@ -55,7 +55,6 @@ class List extends React.Component {
   }
 
   updateFilterText(event) {
-    // this.setState({ filterText: event.target.value });
     this.props.dispatch(changeFilter(event.target.value));
   }
 
@@ -65,7 +64,7 @@ class List extends React.Component {
       .map(item =>
       <li key={item.id}>
         <Link href={'/list/' + item.id}>
-          {item.id}: {item.title}
+          <a>{item.id}: {item.title}</a>
         </Link>
       </li>
     );
@@ -87,6 +86,7 @@ class List extends React.Component {
           }
           ul.list :global(li a) {
             display: block;
+            text-align: left;
           }
           ul.list :global(li.active a) {
             color: lightseagreen;

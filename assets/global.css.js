@@ -5,6 +5,10 @@ export default css`
   text-align: center;
 }
 
+input {
+  text-align: left;
+}
+
 body, ul {
   margin: 0;
   border: 0;
