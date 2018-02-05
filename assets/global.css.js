@@ -1,3 +1,10 @@
+import css from 'styled-jsx/css'
+
+export default css`
+* {
+  text-align: center;
+}
+
 body, ul {
   margin: 0;
   border: 0;
@@ -79,4 +86,4 @@ input {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   z-index: 2147483647;
-}
+}`
