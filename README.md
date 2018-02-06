@@ -19,3 +19,9 @@ $ npm run dev
 $ npm run build
 $ npm start
 ```
+
+## 快速开发
+
+可参考示例代码进行组件、路由、状态数据的快速开发。
+
+![](./readme_assets/demo.gif)
