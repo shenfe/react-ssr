@@ -11,13 +11,13 @@ const test = require('./test')
 app.prepare().then(() => {
   const server = express()
 
-  dev && test(server) // For testing
+  test(server) // For testing
 
   server.get('/list/:id', (req, res) => {
     return app.render(req, res, '/list', { id: req.params.id })
   })
 
-  // Examples
+  // Examples:
 
   server.get('/a', (req, res) => {
     return app.render(req, res, '/b', req.query)

@@ -63,9 +63,7 @@ class List extends React.Component {
     const list = this.state.list.filter(item => String(item.id).includes(listFilterText) || item.title.includes(listFilterText))
       .map(item =>
       <li key={item.id}>
-        <Link href={'/list/' + item.id}>
-          <a>{item.id}: {item.title}</a>
-        </Link>
+        <a href={'/list/' + item.id}>{item.id}: {item.title}</a>
       </li>
     );
     return (
@@ -105,4 +103,10 @@ class List extends React.Component {
   }
 }
 
-export default connect(_ => _)(lifecycleLogger('List')(List));
+function select(state) {
+  return {
+    filterText: state.listFilterText
+  }
+}
+
+export default connect(select)(lifecycleLogger('List')(List));

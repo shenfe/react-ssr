@@ -20,8 +20,11 @@ const classUnion = className => {
 function Header({ links, router }) {
   const navs = links;
   const list = navs.map(item =>
-    <li key={item.alias} className={classUnion([{ active: router.pathname === item.alias }, 'cell'])}>
-      <Link href={item.alias}><a>{item.text}</a></Link>
+    <li key={item.alias} className={classUnion([
+      { active: router.pathname === item.alias && !(router.query && router.query.id != null) },
+      'cell'
+    ])}>
+      <Link href={item.alias} prefetch><a>{item.text}</a></Link>
     </li>
   );
   return (

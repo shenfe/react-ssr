@@ -21,6 +21,7 @@ const ListPage = ({ id, title, content, status, filterText }) =>
 const apiPath = 'http://localhost:3000'
 
 ListPage.getInitialProps = async ({ query: { id } }) => {
+  if (id == null) return {}
   const res = await fetch(`${apiPath}/api/getDetail?id=${id}`)
     .then(res => res.json())
     .then(res => {
